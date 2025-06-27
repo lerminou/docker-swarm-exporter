@@ -1,0 +1,10 @@
+certifi==2025.6.15
+charset-normalizer==3.4.2
+docker==7.1.0
+idna==3.10
+packaging==25.0
+prometheus-client==0.22.1
+pyparsing==3.2.3
+requests==2.32.4
+urllib3==2.5.0
+websocket-client==1.8.0
