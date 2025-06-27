@@ -7,9 +7,12 @@
 
 ## Why Docker Swarm Exporter?
 
-Docker Swarm Exporter provides a centralized monitoring solution for your Docker Swarm clusters without compromising security. By deploying a single instance of this exporter on a Swarm manager node, you can collect metrics from your entire cluster without needing to install Prometheus on each node. This approach offers several advantages:
+Docker Swarm Exporter provides a centralized monitoring solution for your externals Docker Swarm clusters without compromising security.    
+By deploying a single instance of this exporter on a Swarm manager node, you can collect metrics from your entire cluster without needing to install a Prometheus agent on each cluster.     
 
-- **Simplified Architecture**: Eliminates the need for multiple Prometheus instances across your Swarm cluster
+This approach offers several advantages:
+
+- **Simplified Architecture**: Eliminates the need for multiple Prometheus instances
 - **Enhanced Security**: Accesses Docker metrics through a read-only mount of the Docker socket without exposing the Docker daemon API to external networks
 - **Centralized Monitoring**: Collects and exposes metrics from all nodes, services, and tasks in your Swarm from a single endpoint
 
@@ -98,7 +101,7 @@ version: "3.8"
 
 services:
   docker-swarm-exporter:
-    image: ghcr.io/lerminou/docker-swarm-exporter:0.2.0
+    image: ghcr.io/lerminou/docker-swarm-exporter:v1.0.0
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     deploy:
@@ -118,13 +121,12 @@ prometheus.yml
 
 ```yaml
 # ...
-scrape_configs:
-  - job_name: 'docker-swarm-exporter'
-    dns_sd_configs:
-    - names:
-      - 'tasks.docker-swarm-exporter'
-      type: 'A'
-      port: 9000
+
+- job_name: "swarm"
+  static_configs:
+    - targets:
+        - "10.10.10.10:9456" # your swarm cluster ip
+
 ```
 
 sample rules:

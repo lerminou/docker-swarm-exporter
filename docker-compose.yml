@@ -1,0 +1,44 @@
+version: "3.8"
+
+networks:
+  monitoring:
+    driver: overlay
+
+services:
+  # Swarm exporter service
+  swarm-exporter:
+    build:
+      context: .
+    image: ghcr.io/lerminou/docker-swarm-exporter:v1.0.0
+    networks:
+      - monitoring
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - "9456:9456"
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role==manager
+      resources:
+        limits:
+          memory: 56M
+        reservations:
+          memory: 20M
+
+  # Simple Python service for testing
+  python-test:
+    image: python:3.10-alpine
+    command: sleep infinity
+    networks:
+      - monitoring
+    deploy:
+      mode: replicated
+      replicas: 2
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
