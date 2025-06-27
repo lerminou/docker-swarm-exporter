@@ -38,7 +38,7 @@ signal.signal(signal.SIGTERM, handle_shutdown)
 
 APP_NAME = "Docker Swarm prometheus exporter"
 
-PROMETHEUS_EXPORT_PORT = int(os.getenv('PROMETHEUS_EXPORT_PORT', '9000'))
+PROMETHEUS_EXPORT_PORT = int(os.getenv('PROMETHEUS_EXPORT_PORT', '9456'))
 DOCKER_HOSTNAME = os.getenv('DOCKER_HOSTNAME', platform.node())
 SCRAPE_INTERVAL = int(os.getenv('SCRAPE_INTERVAL', '10'))
 MAX_RETRIES_IN_ROW = int(os.getenv('MAX_RETRIES_IN_ROW', '10'))
