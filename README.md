@@ -24,6 +24,28 @@ The following metrics are supported:
 - docker_swarm_service
 - docker_swarm_task
 
+## Grafana Dashboard
+
+A Grafana dashboard is included in this repository to help you visualize your Docker Swarm metrics. The dashboard provides:
+
+- Overview of all Swarm nodes with their roles and status
+- List of all services with their deployment mode and replica count
+- Distribution of tasks across nodes
+- Detailed tables for nodes, services, and tasks
+
+To use the dashboard:
+
+1. Import the `grafana-dashboard.json` file into your Grafana instance
+2. Configure the Prometheus data source that scrapes the Docker Swarm exporter
+3. Enjoy a comprehensive view of your Docker Swarm cluster!
+
+Nodes:
+![Grafana Dashboard Screenshot](./docs/nodes.png)
+Services: 
+![Grafana Dashboard Screenshot](./docs/services.png)
+Tasks:
+![Grafana Dashboard Screenshot](./docs/tasks.png)
+
 ## Metrics Details
 
 ### Metrics Overview
@@ -91,6 +113,7 @@ This project is now available as an open source project on GitHub:
 - Updated dependencies to the latest versions
 - Fixed issues with the Docker SDK for Python API changes
 - Added Docker Compose file for easier testing
+- Added Grafana dashboard for visualizing Docker Swarm metrics
 
 ## Use in a Docker Swarm deployment
 
@@ -126,6 +149,9 @@ prometheus.yml
   static_configs:
     - targets:
         - "10.10.10.10:9456" # your swarm cluster ip
+      labels: # Add your labels for your cluster here; at minimum, include these ones for a functional Grafana dashboard.
+        env: prod
+        swarm: back
 
 ```
 
