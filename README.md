@@ -4,8 +4,6 @@
 [![Docker Image Size](https://img.shields.io/github/repo-size/lerminou/docker-swarm-exporter?logo=docker)](https://github.com/lerminou/docker-swarm-exporter/pkgs/container/docker-swarm-exporter)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lerminou/docker-swarm-exporter/docker-publish.yml?logo=github)](https://github.com/lerminou/docker-swarm-exporter/actions/workflows/docker-publish.yml)
 [![License](https://img.shields.io/github/license/lerminou/docker-swarm-exporter)](https://github.com/lerminou/docker-swarm-exporter/blob/master/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/lerminou/docker-swarm-exporter?style=social)](https://github.com/lerminou/docker-swarm-exporter/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/lerminou/docker-swarm-exporter)](https://github.com/lerminou/docker-swarm-exporter/issues)
 
 ## Why Docker Swarm Exporter?
 
